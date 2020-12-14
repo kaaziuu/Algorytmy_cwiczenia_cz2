@@ -2,4 +2,4 @@
 
 '''lista http://fizyka.umk.pl/~osokolov/ASD/AiSD_17-L2.pdf'''
 
-1. W trakcie
+1. zrobione
