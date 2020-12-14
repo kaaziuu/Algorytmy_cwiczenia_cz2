@@ -19,51 +19,24 @@ void print(tree *T, int deep)
 
 tree *dodaj(tree *T, int Y)
 {
-
-    tree *newEl = (tree *)malloc(sizeof(tree));
-    newEl->leftChild = NULL;
-    newEl->rightChild = NULL;
-    newEl->value = Y;
-    if (T != NULL)
+    if(T==NULL)
     {
-        tree *current = T;
-        while (current != NULL)
-        {
-            if (current->value > Y)
-            {
-                if (current->rightChild == NULL)
-                {
-                    current->rightChild = newEl;
-                    break;
-                }
-                else
-                {
-                    current = current->rightChild;
-                }
-            }
-            else if (current->value < Y)
-            {
-                if (current->leftChild == NULL)
-                {
-                    current->leftChild = newEl;
-                    break;
-                }
-                else
-                {
-                    current = current->leftChild;
-                }
-            }
-            else
-            {
-                break;
-            }
-        }
-        return T;
-    }
-    else
-    {
+        tree *newEl = (tree *)malloc(sizeof(tree));
+        newEl->value = Y;
+        newEl->leftChild = NULL;
+        newEl->rightChild = NULL;
         return newEl;
+
     }
+    else if(T->value > Y)
+    {
+        T->rightChild = dodaj(T->rightChild, Y);
+    }
+    else if(T->value < Y)
+    {
+        T->leftChild = dodaj(T->leftChild, Y);
+    }
+    return T;
 }
 
 void dodaj2(tree **T, int y)

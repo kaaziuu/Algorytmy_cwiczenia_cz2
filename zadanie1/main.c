@@ -6,16 +6,16 @@
 int main(int argc, char const *argv[])
 {
     tree *T = NULL;
-    dodaj2(&T, 2);
+    T = dodaj(T, 2);
     print(T, 0);
-    dodaj2(&T, 4);
-    dodaj2(&T, 5);
-    dodaj2(&T, 3);
-    dodaj2(&T, 1);
-    dodaj2(&T, 0);
-    dodaj2(&T, -10);
-    dodaj2(&T, -26);
-    dodaj2(&T, -8);
+    T = dodaj(T, 4);
+    T = dodaj(T, 5);
+    T = dodaj(T, 3);
+    T = dodaj(T, 1);
+    T = dodaj(T, 0);
+    T = dodaj(T, -10);
+    T = dodaj(T, -26);
+    T = dodaj(T, -8);
     print(T, 0);
 
     return 0;
