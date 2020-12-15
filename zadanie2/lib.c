@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <time.h>
+
 #include <stdlib.h>
 #include "lib.h"
 
@@ -17,31 +19,13 @@ void print(tree *T, int deep)
     print(T->rightChild, deep + 1);
 }
 
-tree *dodaj(tree *T, int Y)
-{
-    if(T==NULL)
-    {
-        tree *newEl = (tree *)malloc(sizeof(tree));
-        newEl->value = Y;
-        newEl->leftChild = NULL;
-        newEl->rightChild = NULL;
-        return newEl;
-
-    }
-    else if(T->value > Y)
-    {
-        T->rightChild = dodaj(T->rightChild, Y);
-    }
-    else if(T->value < Y)
-    {
-        T->leftChild = dodaj(T->leftChild, Y);
-    }
-    return T;
-}
 
 void dodaj(tree **T, int y)
 {
     tree *current = *T;
+
+    int dec = rand() % 2;
+    printf("____%d____\n", dec);
     if (current == NULL)
     {
         tree *newEl = (tree *)malloc(sizeof(tree));
@@ -50,7 +34,7 @@ void dodaj(tree **T, int y)
         newEl->leftChild = NULL;
         newEl->rightChild = NULL;
     }
-    else if (current->value > y)
+    else if (dec)
     {
         if (current->rightChild == NULL)
         {
@@ -62,10 +46,10 @@ void dodaj(tree **T, int y)
         }
         else
         {
-            dodaj2(&current->rightChild, y);
+            dodaj(&current->rightChild, y);
         }
     }
-    else if (current->value < y)
+    else if (!dec)
     {
         if (current->leftChild == NULL)
         {
@@ -77,7 +61,7 @@ void dodaj(tree **T, int y)
         }
         else
         {
-            dodaj2(&current->leftChild, y);
+            dodaj(&current->leftChild, y);
         }
     }
 }
