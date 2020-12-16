@@ -39,7 +39,7 @@ tree *dodaj(tree *T, int Y)
     return T;
 }
 
-void dodaj(tree **T, int y)
+void dodaj2(tree **T, int y)
 {
     tree *current = *T;
     if (current == NULL)

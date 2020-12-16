@@ -25,7 +25,6 @@ void dodaj(tree **T, int y)
     tree *current = *T;
 
     int dec = rand() % 2;
-    printf("____%d____\n", dec);
     if (current == NULL)
     {
         tree *newEl = (tree *)malloc(sizeof(tree));
