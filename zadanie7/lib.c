@@ -97,7 +97,7 @@ tree *nast(tree *T)
     {
         if (T->rightChild)
         {
-            return searchMin(T);
+            return searchMin(T->rightChild);
         }
         else
         {
