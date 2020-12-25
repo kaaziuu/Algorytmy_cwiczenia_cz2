@@ -176,6 +176,7 @@ tree *usunSorted(tree *T, int y)
             tree *n = nast(current);
             current->value = n->value;
             n->parrent->leftChild = n->rightChild;
+            n->rightChild->parrent = n->parrent;
             free(n);
         }
         else if (current->leftChild)
@@ -194,6 +195,7 @@ tree *usunSorted(tree *T, int y)
             {
                 parrent->leftChild = current->leftChild;
             }
+            current->leftChild->parrent = parrent;
             free(current);
         }
         else
@@ -212,6 +214,7 @@ tree *usunSorted(tree *T, int y)
             {
                 parrent->leftChild = current->rightChild;
             }
+            current->rightChild->parrent = parrent;
             free(current);
         }
         return T;
@@ -238,7 +241,6 @@ tree *find(tree *T, int y)
     return rResult;
 }
 
-// TODO: add when add todel == head
 tree *usunUnsorted(tree *T, int y)
 {
     if (T != NULL)
@@ -260,14 +262,17 @@ tree *usunUnsorted(tree *T, int y)
             }
             toDel->value = tmp->value;
             tmp->parrent->leftChild = tmp->rightChild;
+            if(tmp->rightChild)
+                tmp->rightChild->parrent = tmp->parrent;
             free(tmp);
         }
         else if (toDel->leftChild)
         {
             if (T == toDel)
             {
-                tree *tmp = T->leftChild;
-                return tmp;
+                T=T->leftChild;
+                free(toDel);
+                return T;
             }
             if (isR)
             {
@@ -277,6 +282,7 @@ tree *usunUnsorted(tree *T, int y)
             {
                 parrent->leftChild = toDel->leftChild;
             }
+            toDel->leftChild->parrent = parrent;
             free(toDel);
         }
         else
@@ -295,6 +301,7 @@ tree *usunUnsorted(tree *T, int y)
             {
                 parrent->leftChild = toDel->rightChild;
             }
+            toDel->rightChild->parrent = parrent;
             free(toDel);
         }
         return T;
