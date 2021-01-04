@@ -60,18 +60,18 @@ void dodaj(tree **T, int y)
     }
 }
 
-int lw(tree *T, tree *head)
-{
-    if(T==NULL)
+int ll(tree *T)
+{    if(T==NULL)
     {
         return 0;
     }
-    int lCount = lw(T->leftChild, head);
-    int rCount = lw(T->rightChild, head);
-
-    if(head != T)
+    if (T->leftChild == NULL && T->rightChild == NULL)
     {
-        return lCount + rCount +1; 
+        return 1;
     }
-    return lCount + rCount;
+
+    int lCt = ll(T->leftChild);
+    int rCt = ll(T->rightChild);
+
+    return lCt+rCt;
 }

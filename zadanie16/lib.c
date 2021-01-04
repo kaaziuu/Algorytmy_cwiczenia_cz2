@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib.h"
+#include "math.h"
 
 void print(tree *T, int deep)
 {
@@ -60,18 +61,29 @@ void dodaj(tree **T, int y)
     }
 }
 
-int lw(tree *T, tree *head)
+int isThisSame(tree *T1, tree *T2)
 {
-    if(T==NULL)
+    if(T1==NULL && T2 == NULL)
+    {
+        return 1;
+    }
+    if(T1==NULL)
     {
         return 0;
     }
-    int lCount = lw(T->leftChild, head);
-    int rCount = lw(T->rightChild, head);
-
-    if(head != T)
+    if(T2 == NULL)
     {
-        return lCount + rCount +1; 
+        return 0;
     }
-    return lCount + rCount;
+
+    int lCheckt = isThisSame(T1->leftChild, T2->leftChild);
+    int rCheckt = isThisSame(T1->rightChild, T2->rightChild);
+
+    if(T1->value != T2->value || lCheckt == 0 || rCheckt == 0)
+    {
+        return 0;
+    }
+    return 1;
+
+
 }

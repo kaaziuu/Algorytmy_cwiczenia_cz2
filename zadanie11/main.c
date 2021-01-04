@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
     dodaj(&T, -26);
     dodaj(&T, -8);
     print(T, 0);
-    int nCount = lw(T, T);
-    printf("\n%d\n", nCount);
-    return 0;
+    int ct = ll(T);
+    printf("\n%d\n", ct);
+
 }

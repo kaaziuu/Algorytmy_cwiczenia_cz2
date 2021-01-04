@@ -60,18 +60,68 @@ void dodaj(tree **T, int y)
     }
 }
 
-int lw(tree *T, tree *head)
+void levelPrinter(int currentLevel, int k, tree *T)
 {
-    if(T==NULL)
+    if (T == NULL)
+        return;
+    if (k == currentLevel)
+    {
+        printf("%d\n", T->value);
+        return;
+    }
+
+    levelPrinter(currentLevel + 1, k, T->leftChild);
+    levelPrinter(currentLevel + 1, k, T->rightChild);
+}
+
+int wys(tree *T)
+{
+    if (T == NULL)
     {
         return 0;
     }
-    int lCount = lw(T->leftChild, head);
-    int rCount = lw(T->rightChild, head);
-
-    if(head != T)
+    int leftHeight = 1 + wys(T->leftChild);
+    int rightHeight = 1 + wys(T->rightChild);
+    if (leftHeight > rightHeight)
     {
-        return lCount + rCount +1; 
+        return leftHeight;
     }
-    return lCount + rCount;
+    return rightHeight;
+}
+
+int getWidth(tree *T, int level)
+{
+    if (T == NULL)
+    {
+        return 0;
+    }
+    if (level == 1)
+    {
+        return 1;
+    }
+    if (level > 1)
+    {
+        return getWidth(T->leftChild, level - 1) + getWidth(T->rightChild, level - 1);
+    }
+}
+
+int szer(tree *T)
+{
+    if (T != NULL)
+    {
+        int height = wys(T);
+        int i = 1;
+        int tmp;
+        int maxWidth = 0;
+        for(i; i<=height; i++)
+        {
+            tmp = getWidth(T, i);
+            if(tmp > maxWidth)
+            {
+                maxWidth = tmp;
+            }
+        }
+        return maxWidth;
+    }
+    return 0;
 }

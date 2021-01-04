@@ -8,4 +8,6 @@ typedef struct  tree
 void dodaj(tree **T, int y);
 void print(tree *T, int deep);
 
-int lw(tree *T, tree *head);
+int maxDifferenceHeight(tree *T);
+
+int maxDifferenceCount(tree *T);

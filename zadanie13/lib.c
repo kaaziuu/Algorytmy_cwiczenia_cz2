@@ -60,18 +60,24 @@ void dodaj(tree **T, int y)
     }
 }
 
-int lw(tree *T, tree *head)
+void levelPrinter(int currentLevel, int k, tree *T)
 {
-    if(T==NULL)
+    if(T==NULL) return;
+    if(k==currentLevel)
     {
-        return 0;
+        printf("%d\n", T->value);
+        return;
     }
-    int lCount = lw(T->leftChild, head);
-    int rCount = lw(T->rightChild, head);
 
-    if(head != T)
+    levelPrinter(currentLevel+1, k, T->leftChild);
+    levelPrinter(currentLevel+1, k, T->rightChild);
+}
+
+void level(tree *T, int k)
+{
+    if (T != NULL)
     {
-        return lCount + rCount +1; 
+        int currentLevel = 1;
+        levelPrinter(currentLevel, k, T);
     }
-    return lCount + rCount;
 }

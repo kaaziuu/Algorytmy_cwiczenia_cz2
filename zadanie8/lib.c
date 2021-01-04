@@ -163,6 +163,10 @@ tree *usunSorted(tree *T, int y)
                 current = current->rightChild;
             }
         }
+        if(current == NULL)
+        {
+            return T;
+        }
 
         tree *parrent = current->parrent;
         int isR = 1;
@@ -176,7 +180,8 @@ tree *usunSorted(tree *T, int y)
             tree *n = nast(current);
             current->value = n->value;
             n->parrent->leftChild = n->rightChild;
-            n->rightChild->parrent = n->parrent;
+            if(n->rightChild)
+                n->rightChild->parrent = n->parrent;
             free(n);
         }
         else if (current->leftChild)
